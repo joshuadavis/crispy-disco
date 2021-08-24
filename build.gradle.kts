@@ -1,26 +1,28 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm")
+    id("org.springframework.boot") version "2.5.4"
+    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    kotlin("jvm") version "1.5.21"
+    kotlin("plugin.spring") version "1.5.21"
 }
 
 allprojects {
-    apply(plugin = "org.jetbrains.kotlin.jvm")
+    apply(plugin = "kotlin")
+    apply(plugin = "io.spring.dependency-management")
 
     repositories {
         mavenCentral()
     }
 
-    dependencies {
-        constraints {
-            // implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.4")
-            // implementation("io.swagger.parser.v3:swagger-parser:2.0.27")
-            implementation("org.openapitools.openapidiff:openapi-diff-core:2.0.0-beta.10")
-
-            testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-            testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.2")
-            testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
-            testRuntimeOnly("ch.qos.logback:logback-classic:1.2.5")
+    dependencyManagement {
+        dependencies {
+            dependency("org.openapitools.openapidiff:openapi-diff-core:2.0.0-beta.10")
+            dependency("org.junit.jupiter:junit-jupiter-api:5.7.2")
+            dependency("org.junit.jupiter:junit-jupiter-params:5.7.2")
+            dependency("org.junit.jupiter:junit-jupiter-engine:5.7.2")
         }
+    }
 
+    dependencies {
         implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
@@ -28,6 +30,7 @@ allprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-params")
         testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
     }
+
     tasks {
         test {
             useJUnitPlatform()
