@@ -19,14 +19,18 @@ allprojects {
         imports {
             mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
         }
+        overriddenByDependencies(false)
         dependencies {
             dependency("org.openapitools.openapidiff:openapi-diff-core:2.0.0-beta.10")
+            dependency("io.github.microutils:kotlin-logging-jvm:2.0.10")
         }
     }
 
     dependencies {
         implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+        implementation("io.github.microutils:kotlin-logging-jvm")
 
         testImplementation("org.junit.jupiter:junit-jupiter-api")
         testImplementation("org.junit.jupiter:junit-jupiter-params")
