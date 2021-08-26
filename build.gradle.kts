@@ -1,5 +1,5 @@
 plugins {
-    id("org.springframework.boot") version "2.5.4"
+    id("org.springframework.boot") version "2.5.4" apply(false)
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.5.21"
     kotlin("plugin.spring") version "1.5.21"
@@ -14,11 +14,13 @@ allprojects {
     }
 
     dependencyManagement {
+        // We need to import the Spring Boot BOM because we're *not* applying the spring boot plugin to every
+        // module.   However, we do need the dependencies.
+        imports {
+            mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+        }
         dependencies {
             dependency("org.openapitools.openapidiff:openapi-diff-core:2.0.0-beta.10")
-            dependency("org.junit.jupiter:junit-jupiter-api:5.7.2")
-            dependency("org.junit.jupiter:junit-jupiter-params:5.7.2")
-            dependency("org.junit.jupiter:junit-jupiter-engine:5.7.2")
         }
     }
 
