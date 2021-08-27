@@ -22,7 +22,7 @@ allprojects {
         overriddenByDependencies(false)
         dependencies {
             dependency("org.openapitools.openapidiff:openapi-diff-core:2.0.0-beta.10")
-            dependency("io.github.microutils:kotlin-logging-jvm:2.0.10")
+            dependency("io.github.microutils:kotlin-logging-jvm:2.0.11")
             dependency("org.springdoc:springdoc-openapi-ui:1.5.10")
         }
     }
